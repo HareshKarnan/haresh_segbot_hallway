@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- This version uses the openai_ros environments -->
+    <include file="$(find bwi_launch)/launch/openai_gym.launch" />
+
+    <!-- Launch the training system -->
+    <node pkg="haresh_segbot_hallway" name="segbot_collision_avoid" type="haresh_test.py" output="screen"/>
+
+</launch>
+
