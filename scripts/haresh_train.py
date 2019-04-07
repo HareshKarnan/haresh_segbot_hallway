@@ -84,22 +84,18 @@ if __name__ == '__main__':
     # Parameters are stored in a yaml file inside the config directory
     # They are loaded at runtime by the launch file
 
-    obs = env.reset()
+    env.reset()
 
     # rospy.logerr("Successfully simulated the robot without any errors")
     env = DummyVecEnv([lambda: env])
     # n_cpu = 4
     # env = SubprocVecEnv([lambda: env for i in range(n_cpu)])
 
-    model = TRPO.load("trpo_cnn_hallway.pkl")
-    done = False
-    total_reward = 0
-    while not done:
-        action = model.predict(obs)
-        obs,reward,done,info = env.step(action)
-        total_reward+=reward
-    rospy.logerr('Episode ended. The total reward achieved in this test is  :: ',total_reward)
-    # obs = env.reset()
+    model = TRPO(CustomPolicy, env, verbose=1,tensorboard_log="./a2crecc_hallway_tensorboard/")
+    model.learn(total_timesteps=100000,tb_log_name="trpo_cnn_negative_turn_reward")
+    model.save("trpo_cnn_hallway_negativeturn_fixedreward")
+
+    obs = env.reset()
 
     time.sleep(5)
     env.close()

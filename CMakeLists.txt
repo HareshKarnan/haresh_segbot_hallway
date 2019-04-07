@@ -161,6 +161,7 @@ include_directories(
  install(PROGRAMS
    scripts/go_marvin
    scripts/haresh_test
+   scripts/haresh_train
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 
@@ -169,7 +170,7 @@ include_directories(
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+# )z
 
 ## Mark cpp header files for installation
 # install(DIRECTORY include/${PROJECT_NAME}/
