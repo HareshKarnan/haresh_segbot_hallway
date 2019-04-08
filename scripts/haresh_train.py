@@ -91,7 +91,7 @@ if __name__ == '__main__':
     # n_cpu = 4
     # env = SubprocVecEnv([lambda: env for i in range(n_cpu)])
 
-    model = TRPO(CustomPolicy, env, verbose=1,tensorboard_log="./a2crecc_hallway_tensorboard/")
+    model = TRPO(CustomPolicy, env, verbose=1,tensorboard_log="./a2crecc_hallway_tensorboard/",timesteps_per_batch=32)
     model.learn(total_timesteps=100000,tb_log_name="trpo_cnn_negative_turn_reward")
     model.save("trpo_cnn_hallway_negativeturn_fixedreward")
 
