@@ -84,14 +84,14 @@ if __name__ == '__main__':
     # Parameters are stored in a yaml file inside the config directory
     # They are loaded at runtime by the launch file
 
-    obs = env.reset()
 
     # rospy.logerr("Successfully simulated the robot without any errors")
     env = DummyVecEnv([lambda: env])
     # n_cpu = 4
     # env = SubprocVecEnv([lambda: env for i in range(n_cpu)])
+    model = A2C.load("trpo_cnn_hallway_negativeturn_fixedreward")
+    obs = env.reset()
 
-    model = TRPO.load("trpo_cnn_hallway.pkl")
     done = False
     total_reward = 0
     while not done:
